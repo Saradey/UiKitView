@@ -5,8 +5,8 @@ import androidx.annotation.ColorInt
 data class ChartInfo(
     val chartName: String,
     val chartValue: Int,
-    val startAngle: Float,
-    val currentAngle: Float,
-    val endAngle: Float,
+    var startAngle: Float = 0f,
+    var currentAngle: Float = 0f,
+    var endAngle: Float = 0f,
     @ColorInt val chartColor: Int
 )

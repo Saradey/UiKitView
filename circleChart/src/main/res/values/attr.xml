@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <declare-styleable name="CircleChartView">
+        <attr name="arcPieSpacePixels" format="integer" />
+        <attr name="arcPieStrokeSize" format="float" />
+        <attr name="arcPieMode" format="enum">
+            <enum name="stroke" value="0" />
+            <enum name="fill" value="1" />
+        </attr>
+    </declare-styleable>
+
 </resources>
