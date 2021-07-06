@@ -16,9 +16,55 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             app:arcPieMode="stroke"
-            app:arcPieSpacePixels="5"
-            app:arcPieStrokeSize="50"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:arcPieSpacePixels="3dp"
+            app:arcPieStrokeSize="20dp" />
+
+        <com.saradey.studio.circlechart.CircleChartView
+            android:id="@+id/crcExample2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp" />
+
+        <com.saradey.studio.circlechart.CircleChartView
+            android:id="@+id/crcExample3"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            app:arcPieMode="stroke"
+            app:arcPieSpacePixels="5dp"
+            app:arcPieStrokeSize="40dp" />
+
+        <com.saradey.studio.circlechart.CircleChartView
+            android:id="@+id/crcExample4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            app:arcPieMode="stroke"
+            app:arcPieSpacePixels="3dp"
+            app:arcPieStrokeSize="10dp" />
+
+        <com.saradey.studio.circlechart.CircleChartView
+            android:id="@+id/crcExample5"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            app:arcPieMode="stroke"
+            app:arcPieSpacePixels="3dp"
+            app:arcPieStrokeSize="10dp" />
+
+        <com.saradey.studio.circlechart.CircleChartView
+            android:id="@+id/crcExample6"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            app:arcPieMode="stroke"
+            app:arcPieSpacePixels="3dp"
+            app:arcPieStrokeSize="10dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </androidx.core.widget.NestedScrollView>

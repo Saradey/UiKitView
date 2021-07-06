@@ -9,11 +9,50 @@ import com.saradey.studio.uikitview.R
 
 class CircleChartFragment : Fragment(R.layout.fragment_circle_chart) {
 
-    private lateinit var crcExample1: CircleChartView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        crcExample1 = requireView().findViewById(R.id.crcExample1)
+        val crcExample1 = requireView().findViewById<CircleChartView>(R.id.crcExample1)
         crcExample1.Builder()
+            .addDataValue("Android", 100, Color.DKGRAY)
+            .addDataValue("Ios", 100, Color.RED)
+            .addDataValue("Fuchsia", 50, Color.GREEN)
+            .addDataValue("Harmonia", 96, Color.BLUE)
+            .create()
+
+        val crcExample2 = requireView().findViewById<CircleChartView>(R.id.crcExample2)
+        crcExample2.Builder()
+            .addDataValue("Android", 100, Color.DKGRAY)
+            .addDataValue("Ios", 100, Color.RED)
+            .addDataValue("Fuchsia", 50, Color.GREEN)
+            .addDataValue("Harmonia", 96, Color.BLUE)
+            .create()
+
+        val crcExample3 = requireView().findViewById<CircleChartView>(R.id.crcExample3)
+        crcExample3.Builder()
+            .addDataValue("Android", 100, Color.DKGRAY)
+            .addDataValue("Ios", 100, Color.RED)
+            .addDataValue("Fuchsia", 50, Color.GREEN)
+            .addDataValue("Harmonia", 96, Color.BLUE)
+            .create()
+
+        val crcExample4 = requireView().findViewById<CircleChartView>(R.id.crcExample4)
+        crcExample4.Builder()
+            .addDataValue("Android", 100, Color.DKGRAY)
+            .addDataValue("Ios", 100, Color.RED)
+            .addDataValue("Fuchsia", 50, Color.GREEN)
+            .addDataValue("Harmonia", 96, Color.BLUE)
+            .create()
+
+        val crcExample5 = requireView().findViewById<CircleChartView>(R.id.crcExample5)
+        crcExample5.Builder()
+            .addDataValue("Android", 100, Color.DKGRAY)
+            .addDataValue("Ios", 100, Color.RED)
+            .addDataValue("Fuchsia", 50, Color.GREEN)
+            .addDataValue("Harmonia", 96, Color.BLUE)
+            .create()
+
+        val crcExample6 = requireView().findViewById<CircleChartView>(R.id.crcExample6)
+        crcExample6.Builder()
             .addDataValue("Android", 100, Color.DKGRAY)
             .addDataValue("Ios", 100, Color.RED)
             .addDataValue("Fuchsia", 50, Color.GREEN)

@@ -44,7 +44,7 @@ class CircleChartView : View {
     private val paint = Paint()
 
     /** Пустое расстояние между паями */
-    private var arcPieSpacePixels = 0
+    private var arcPieSpacePixels = 0f
 
     /** Толщина наших паев */
     private var arcPieStrokeSize = 0f
@@ -62,8 +62,8 @@ class CircleChartView : View {
 
     private fun initAttrs(attrs: AttributeSet?) {
         val typed = context.obtainStyledAttributes(attrs, R.styleable.CircleChartView)
-        arcPieSpacePixels = typed.getInt(R.styleable.CircleChartView_arcPieSpacePixels, 0)
-        arcPieStrokeSize = typed.getFloat(R.styleable.CircleChartView_arcPieStrokeSize, 10f)
+        arcPieSpacePixels = typed.getDimension(R.styleable.CircleChartView_arcPieSpacePixels, 0f)
+        arcPieStrokeSize = typed.getDimension(R.styleable.CircleChartView_arcPieStrokeSize, 10f)
         arcPieMode = typed.getInt(R.styleable.CircleChartView_arcPieMode, 0)
         typed.recycle()
     }
@@ -76,32 +76,55 @@ class CircleChartView : View {
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
         var width = 0
         var height = 0
-        width = if (widthMode == MeasureSpec.AT_MOST) {
-            resources.getDimensionPixelSize(R.dimen.min_chart_size)
+        val dimensionPixelSize = resources.getDimensionPixelSize(R.dimen.min_chart_size)
+        //если у нас выставлено wrap_content для ширины
+        //или у нас widthSize меньше минимальной ширины
+        //то мы делаем ширины по умолчанию, иначе мы делаем ширины
+        //как задано в dp
+        width = if (widthMode == MeasureSpec.AT_MOST ||
+            dimensionPixelSize > widthSize
+        ) {
+            dimensionPixelSize
         } else {
             widthSize
         }
-        height =
-            if (heightMode == MeasureSpec.AT_MOST || (heightMode == MeasureSpec.UNSPECIFIED && heightSize == 0)) {
-                resources.getDimensionPixelSize(R.dimen.min_chart_size)
-            } else {
-                heightSize
-            }
+        //если у нас выставлено wrap_content для высоты
+        //или у нас heightSize меньше минимальной высоты
+        //то мы делаем высоту по умолчанию, иначе мы делаем высоту
+        //как задано в dp
+        height = if (heightMode == MeasureSpec.AT_MOST ||
+            dimensionPixelSize > heightSize
+        ) {
+            dimensionPixelSize
+        } else {
+            heightSize
+        }
+        //если размеры по ширине и высоте не пропорциональны
+        //то мы делаем их пропорциональными то есть квадрат
+        if (width > height) {
+            height = width
+        } else {
+            width = height
+        }
         setMeasuredDimension(width, height)
         initValues(width.toFloat(), height.toFloat())
     }
 
     private fun initValues(width: Float, height: Float) {
         paint.strokeWidth = arcPieStrokeSize
+        //rectF это rect в пределах котрого будет отрисовываться круг
+        //arcPieStrokeSize / 2 это нужно что бы не выходить за рамки нашего view
         rectF.set(
             0f + arcPieStrokeSize / 2,
             0f + arcPieStrokeSize / 2,
             width - arcPieStrokeSize / 2,
             height - arcPieStrokeSize / 2
         )
+        //заливка или линии
         paint.style = if (arcPieMode == ARC_MODE_STROKE)
             Paint.Style.STROKE
         else Paint.Style.FILL
+        //заливка или линии
         useCenter = arcPieMode == ARC_MODE_FILL
     }
 
@@ -118,32 +141,37 @@ class CircleChartView : View {
 
         fun addDataValue(
             chartName: String,
-            data: Int,
-            @ColorInt arcColor: Int
+            chartValue: Int,
+            @ColorInt chartColor: Int
         ): Builder {
             chartsInfo.add(
                 ChartInfo(
                     chartName = chartName,
-                    chartValue = data,
-                    chartColor = arcColor
+                    chartValue = chartValue,
+                    chartColor = chartColor
                 )
             )
             return this
         }
 
         fun create() {
+            //сумма всех chartValue
             val totalScore = chartsInfo.sumOf {
                 it.chartValue
             }
             chartsInfo.forEachIndexed { index, model ->
+                //размер пая на круге
                 model.currentAngle = (model.chartValue.toFloat() / totalScore.toFloat()) * 360f
+                //если у нас первый элемент, он отрисовывается с 0 градуса
                 if (index > 0) {
+                    //каждый следующий пай отрисовывается в зависимости от последнего
                     model.startAngle =
                         chartsInfo[index - 1].startAngle + chartsInfo[index - 1].currentAngle
                 }
+                //где пай заканчивается с учетом пространства между паями
                 model.endAngle = model.currentAngle - arcPieSpacePixels
             }
-            requestLayout()
+            invalidate()
         }
     }
 
