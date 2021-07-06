@@ -6,15 +6,17 @@
     android:background="@color/white">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llcContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
         <com.saradey.studio.circlechart.CircleChartView
             android:id="@+id/crcExample1"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_gravity="center"
+            android:layout_margin="16dp"
             app:arcPieMode="stroke"
             app:arcPieSpacePixels="3dp"
             app:arcPieStrokeSize="20dp" />
@@ -23,15 +25,13 @@
             android:id="@+id/crcExample2"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp" />
+            android:layout_margin="16dp" />
 
         <com.saradey.studio.circlechart.CircleChartView
             android:id="@+id/crcExample3"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_margin="16dp"
             app:arcPieMode="stroke"
             app:arcPieSpacePixels="5dp"
             app:arcPieStrokeSize="40dp" />
@@ -40,8 +40,7 @@
             android:id="@+id/crcExample4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_margin="16dp"
             app:arcPieMode="stroke"
             app:arcPieSpacePixels="3dp"
             app:arcPieStrokeSize="10dp" />
@@ -50,8 +49,7 @@
             android:id="@+id/crcExample5"
             android:layout_width="100dp"
             android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_margin="16dp"
             app:arcPieMode="stroke"
             app:arcPieSpacePixels="3dp"
             app:arcPieStrokeSize="10dp" />
@@ -60,8 +58,7 @@
             android:id="@+id/crcExample6"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
+            android:layout_margin="16dp"
             app:arcPieMode="stroke"
             app:arcPieSpacePixels="3dp"
             app:arcPieStrokeSize="10dp" />

@@ -139,6 +139,11 @@ class CircleChartView : View {
 
     inner class Builder {
 
+        init {
+            //заново формируем список
+            chartsInfo.clear()
+        }
+
         fun addDataValue(
             chartName: String,
             chartValue: Int,
@@ -170,8 +175,8 @@ class CircleChartView : View {
                 }
                 //где пай заканчивается с учетом пространства между паями
                 model.endAngle = model.currentAngle - arcPieSpacePixels
+                invalidate()
             }
-            invalidate()
         }
     }
 
