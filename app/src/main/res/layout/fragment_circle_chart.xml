@@ -62,6 +62,27 @@
             app:arcPieMode="stroke"
             app:arcPieSpacePixels="3dp"
             app:arcPieStrokeSize="10dp" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <com.saradey.studio.circlechart.CircleChartView
+            android:id="@+id/crcExample7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:arcPieMode="fill" />
+
+        <com.saradey.studio.circlechart.CircleChartView
+            android:id="@+id/crcExample8"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="16dp"
+            app:arcPieMode="fill" />
+
+        <com.saradey.studio.circlechart.CircleChartView
+            android:id="@+id/crcExample9"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="16dp"
+            app:arcPieMode="fill"
+            app:arcPieSpacePixels="3dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>
