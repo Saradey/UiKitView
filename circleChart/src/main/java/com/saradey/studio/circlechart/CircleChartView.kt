@@ -55,13 +55,19 @@ class CircleChartView : View {
     /** Будет элевейшен или нет */
     private var arcPieElevation = false
 
+    /** Размер elevation для круга */
     private var arcPieElevationF = 0f
 
+    /** Для отрисовки elevation */
     private val paintElevation = Paint()
 
-    private var radius = 0f
-
+    /** Для внутренней отрисовки elevation */
     private var rectInsideElevation = RectF()
+
+    /** Для внешней отрисовки elevation */
+    private var rectOutsideElevation = RectF()
+
+    private var radius = 0f
 
     init {
         paint.color = Color.TRANSPARENT
@@ -146,12 +152,22 @@ class CircleChartView : View {
             width - arcPieStrokeSize / 2 - arcPieElevationF,
             height - arcPieStrokeSize / 2 - arcPieElevationF
         )
-        rectInsideElevation.set(
-            0f + arcPieStrokeSize + arcPieElevationF,
-            0f + arcPieStrokeSize + arcPieElevationF,
-            width - arcPieStrokeSize - arcPieElevationF,
-            height - arcPieStrokeSize - arcPieElevationF
-        )
+        //вычисляем координаты отрисовки elevation для внутреннего и внешнего
+        //круга
+        if (arcPieElevation) {
+            rectInsideElevation.set(
+                0f + arcPieStrokeSize + arcPieElevationF,
+                0f + arcPieStrokeSize + arcPieElevationF,
+                width - arcPieStrokeSize - arcPieElevationF,
+                height - arcPieStrokeSize - arcPieElevationF
+            )
+            rectOutsideElevation.set(
+                0f + arcPieElevationF,
+                0f + arcPieElevationF,
+                width - arcPieElevationF,
+                height - arcPieElevationF
+            )
+        }
         //заливка или линии
         paint.style = if (arcPieMode == ARC_MODE_STROKE)
             Paint.Style.STROKE
@@ -171,6 +187,13 @@ class CircleChartView : View {
         chartsInfo.forEach { model ->
             canvas.drawArc(
                 rectInsideElevation,
+                model.startAngle,
+                model.endAngle,
+                useCenter,
+                paintElevation
+            )
+            canvas.drawArc(
+                rectOutsideElevation,
                 model.startAngle,
                 model.endAngle,
                 useCenter,

@@ -93,6 +93,6 @@
             app:arcPieElevation="true"
             app:arcPieMode="stroke"
             app:arcPieSpacePixels="3dp"
-            app:arcPieStrokeSize="20dp" />
+            app:arcPieStrokeSize="30dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>
