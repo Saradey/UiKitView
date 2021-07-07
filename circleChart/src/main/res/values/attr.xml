@@ -8,6 +8,7 @@
             <enum name="stroke" value="0" />
             <enum name="fill" value="1" />
         </attr>
+        <attr name="arcPieElevation" format="boolean" />
     </declare-styleable>
 
 </resources>

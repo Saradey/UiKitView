@@ -2,5 +2,6 @@
 <resources>
 
     <dimen name="min_chart_size">50dp</dimen>
+    <dimen name="max_size_elevation_circle">2dp</dimen>
 
 </resources>

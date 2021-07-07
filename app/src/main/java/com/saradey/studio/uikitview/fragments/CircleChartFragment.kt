@@ -10,7 +10,6 @@ import com.saradey.studio.uikitview.R
 
 class CircleChartFragment : Fragment(R.layout.fragment_circle_chart) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val crcExample1 = requireView().findViewById<CircleChartView>(R.id.crcExample1)
         crcExample1.Builder()
@@ -86,6 +85,14 @@ class CircleChartFragment : Fragment(R.layout.fragment_circle_chart) {
 
         val crcExample9 = requireView().findViewById<CircleChartView>(R.id.crcExample9)
         crcExample9.Builder()
+            .addDataValue("Android", 100, Color.DKGRAY)
+            .addDataValue("Ios", 100, Color.RED)
+            .addDataValue("Fuchsia", 50, Color.GREEN)
+            .addDataValue("Harmonia", 96, Color.BLUE)
+            .create()
+
+        val crcExample10 = requireView().findViewById<CircleChartView>(R.id.crcExample10)
+        crcExample10.Builder()
             .addDataValue("Android", 100, Color.DKGRAY)
             .addDataValue("Ios", 100, Color.RED)
             .addDataValue("Fuchsia", 50, Color.GREEN)

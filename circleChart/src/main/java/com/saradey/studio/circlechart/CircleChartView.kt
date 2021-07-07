@@ -1,14 +1,11 @@
 package com.saradey.studio.circlechart
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
-import kotlin.math.min
+import androidx.core.content.ContextCompat
 
 class CircleChartView : View {
 
@@ -55,6 +52,17 @@ class CircleChartView : View {
     /** Флаг который позволяет закрашивать круг из центра */
     private var useCenter = false
 
+    /** Будет элевейшен или нет */
+    private var arcPieElevation = false
+
+    private var arcPieElevationF = 0f
+
+    private val paintElevation = Paint()
+
+    private var radius = 0f
+
+    private var rectInsideElevation = RectF()
+
     init {
         paint.color = Color.TRANSPARENT
         paint.isAntiAlias = true
@@ -65,7 +73,25 @@ class CircleChartView : View {
         arcPieSpacePixels = typed.getDimension(R.styleable.CircleChartView_arcPieSpacePixels, 0f)
         arcPieStrokeSize = typed.getDimension(R.styleable.CircleChartView_arcPieStrokeSize, 10f)
         arcPieMode = typed.getInt(R.styleable.CircleChartView_arcPieMode, 0)
+        arcPieElevation = typed.getBoolean(R.styleable.CircleChartView_arcPieElevation, false)
         typed.recycle()
+        validateValues()
+    }
+
+    private fun validateValues() {
+        if (arcPieElevation) {
+            arcPieElevationF =
+                resources.getDimensionPixelSize(R.dimen.max_size_elevation_circle).toFloat()
+        }
+        if (arcPieElevation) {
+            paintElevation.isAntiAlias = true
+            paintElevation.strokeWidth = arcPieElevationF
+            paintElevation.style = Paint.Style.STROKE
+            paintElevation.color = ContextCompat.getColor(
+                context,
+                R.color.elevation_color
+            )
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -115,10 +141,16 @@ class CircleChartView : View {
         //rectF это rect в пределах котрого будет отрисовываться круг
         //arcPieStrokeSize / 2 это нужно что бы не выходить за рамки нашего view
         rectF.set(
-            0f + arcPieStrokeSize / 2,
-            0f + arcPieStrokeSize / 2,
-            width - arcPieStrokeSize / 2,
-            height - arcPieStrokeSize / 2
+            0f + arcPieStrokeSize / 2 + arcPieElevationF,
+            0f + arcPieStrokeSize / 2 + arcPieElevationF,
+            width - arcPieStrokeSize / 2 - arcPieElevationF,
+            height - arcPieStrokeSize / 2 - arcPieElevationF
+        )
+        rectInsideElevation.set(
+            0f + arcPieStrokeSize + arcPieElevationF,
+            0f + arcPieStrokeSize + arcPieElevationF,
+            width - arcPieStrokeSize - arcPieElevationF,
+            height - arcPieStrokeSize - arcPieElevationF
         )
         //заливка или линии
         paint.style = if (arcPieMode == ARC_MODE_STROKE)
@@ -126,15 +158,33 @@ class CircleChartView : View {
         else Paint.Style.FILL
         //заливка или линии
         useCenter = arcPieMode == ARC_MODE_FILL
+        radius = width / 2 - arcPieElevationF
     }
 
     override fun onDraw(canvas: Canvas) {
+        drawPieChats(canvas)
+        if (arcPieElevation)
+            drawElevationCircle(canvas)
+    }
+
+    private fun drawElevationCircle(canvas: Canvas) {
+        chartsInfo.forEach { model ->
+            canvas.drawArc(
+                rectInsideElevation,
+                model.startAngle,
+                model.endAngle,
+                useCenter,
+                paintElevation
+            )
+        }
+    }
+
+    private fun drawPieChats(canvas: Canvas) {
         canvas.drawColor(Color.TRANSPARENT)
         chartsInfo.forEach { model ->
             paint.color = model.chartColor
             canvas.drawArc(rectF, model.startAngle, model.endAngle, useCenter, paint)
         }
-        super.onDraw(canvas)
     }
 
     inner class Builder {
