@@ -67,6 +67,7 @@ class CircleChartView : View {
     /** Для внешней отрисовки elevation */
     private var rectOutsideElevation = RectF()
 
+    /** Радиус круга в пикселях */
     private var radius = 0f
 
     init {
@@ -88,8 +89,6 @@ class CircleChartView : View {
         if (arcPieElevation) {
             arcPieElevationF =
                 resources.getDimensionPixelSize(R.dimen.max_size_elevation_circle).toFloat()
-        }
-        if (arcPieElevation) {
             paintElevation.isAntiAlias = true
             paintElevation.strokeWidth = arcPieElevationF
             paintElevation.style = Paint.Style.STROKE
@@ -108,15 +107,15 @@ class CircleChartView : View {
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
         var width = 0
         var height = 0
-        val dimensionPixelSize = resources.getDimensionPixelSize(R.dimen.min_chart_size)
+        val dimensionMinSize = resources.getDimensionPixelSize(R.dimen.min_chart_size)
         //если у нас выставлено wrap_content для ширины
         //или у нас widthSize меньше минимальной ширины
         //то мы делаем ширины по умолчанию, иначе мы делаем ширины
         //как задано в dp
         width = if (widthMode == MeasureSpec.AT_MOST ||
-            dimensionPixelSize > widthSize
+            dimensionMinSize > widthSize
         ) {
-            dimensionPixelSize
+            dimensionMinSize
         } else {
             widthSize
         }
@@ -125,9 +124,9 @@ class CircleChartView : View {
         //то мы делаем высоту по умолчанию, иначе мы делаем высоту
         //как задано в dp
         height = if (heightMode == MeasureSpec.AT_MOST ||
-            dimensionPixelSize > heightSize
+            dimensionMinSize > heightSize
         ) {
-            dimensionPixelSize
+            dimensionMinSize
         } else {
             heightSize
         }
@@ -185,13 +184,15 @@ class CircleChartView : View {
 
     private fun drawElevationCircle(canvas: Canvas) {
         chartsInfo.forEach { model ->
-            canvas.drawArc(
-                rectInsideElevation,
-                model.startAngle,
-                model.endAngle,
-                useCenter,
-                paintElevation
-            )
+            if (arcPieMode == ARC_MODE_STROKE) {
+                canvas.drawArc(
+                    rectInsideElevation,
+                    model.startAngle,
+                    model.endAngle,
+                    useCenter,
+                    paintElevation
+                )
+            }
             canvas.drawArc(
                 rectOutsideElevation,
                 model.startAngle,

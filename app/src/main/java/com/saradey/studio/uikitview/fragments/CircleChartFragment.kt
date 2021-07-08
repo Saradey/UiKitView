@@ -104,5 +104,21 @@ class CircleChartFragment : Fragment(R.layout.fragment_circle_chart) {
             .addDataValue("Fuchsia", 50, colorTest3)
             .addDataValue("Harmonia", 96, colorTest4)
             .create()
+
+        val crcExample11 = requireView().findViewById<CircleChartView>(R.id.crcExample11)
+        crcExample11.Builder()
+            .addDataValue("Android", 100, colorTest1)
+            .addDataValue("Ios", 100, colorTest2)
+            .addDataValue("Fuchsia", 50, colorTest3)
+            .addDataValue("Harmonia", 96, colorTest4)
+            .create()
+
+        val crcExample12 = requireView().findViewById<CircleChartView>(R.id.crcExample12)
+        crcExample12.Builder()
+            .addDataValue("Android", 100, colorTest1)
+            .addDataValue("Ios", 100, colorTest2)
+            .addDataValue("Fuchsia", 50, colorTest3)
+            .addDataValue("Harmonia", 96, colorTest4)
+            .create()
     }
 }
