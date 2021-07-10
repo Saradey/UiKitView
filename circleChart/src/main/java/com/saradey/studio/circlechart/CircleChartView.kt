@@ -60,10 +60,10 @@ class CircleChartView : View {
 
     private fun initAttrs(attrs: AttributeSet?) {
         val typed = context.obtainStyledAttributes(attrs, R.styleable.CircleChartView)
-        arcPieSpacePixels = typed.getDimension(R.styleable.CircleChartView_arcPieSpacePixels, 0f)
-        arcPieStrokeSize = typed.getDimension(R.styleable.CircleChartView_arcPieStrokeSize, 10f)
-        arcPieMode = typed.getInt(R.styleable.CircleChartView_arcPieMode, 0)
-        arcPieElevation = typed.getBoolean(R.styleable.CircleChartView_arcPieElevation, false)
+        arcPieSpacePixels = typed.getDimension(R.styleable.CircleChartView_arc_pie_space, 0f)
+        arcPieStrokeSize = typed.getDimension(R.styleable.CircleChartView_arc_pie_stroke_size, 10f)
+        arcPieMode = typed.getInt(R.styleable.CircleChartView_arc_pie_mode, 0)
+        arcPieElevation = typed.getBoolean(R.styleable.CircleChartView_arc_pie_elevation, false)
         typed.recycle()
         validateValues()
     }
