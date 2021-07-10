@@ -7,6 +7,7 @@ import androidx.fragment.app.commit
 import androidx.recyclerview.widget.RecyclerView
 import com.saradey.studio.uikitview.R
 import com.saradey.studio.uikitview.fragments.CircleChartFragment
+import com.saradey.studio.uikitview.fragments.HorizontalSliderFragment
 import com.saradey.studio.uikitview.models.KeyCostumeView
 import com.saradey.studio.uikitview.models.MainListModel
 
@@ -25,12 +26,24 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
         MainListModel(
             title = "Circle Chart",
             key = KeyCostumeView.CircleChart
+        ),
+        MainListModel(
+            title = "Horizontal Slider",
+            key = KeyCostumeView.HorizontalSlider
         )
     )
 
     private fun clickHolderListener(key: KeyCostumeView) {
         when (key) {
             KeyCostumeView.CircleChart -> goToTheCircleChart()
+            KeyCostumeView.HorizontalSlider -> goToTheHorizontalSlider()
+        }
+    }
+
+    private fun goToTheHorizontalSlider() {
+        parentFragmentManager.commit {
+            replace(R.id.rcvFieldContent, HorizontalSliderFragment())
+            addToBackStack(HorizontalSliderFragment::class.java.canonicalName)
         }
     }
 

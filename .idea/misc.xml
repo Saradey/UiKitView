@@ -6,7 +6,11 @@
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23854166666666668" />
         <entry key="app/src/main/res/layout/fragment_circle_chart.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_h_slider.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_horizontal_slider.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/fragment_main_list.xml" value="0.24094202898550723" />
+        <entry key="app/src/main/res/layout/fragment_new.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/fragment_slider.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/holder_main_list.xml" value="0.24094202898550723" />
       </map>
     </option>
