@@ -14,23 +14,6 @@ class CircleChartView : View {
         initAttrs(attr)
     }
 
-    constructor(context: Context, attr: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attr,
-        defStyleAttr
-    ) {
-        initAttrs(attr)
-    }
-
-    constructor(
-        context: Context?,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        initAttrs(attrs)
-    }
-
     /** Пространство в котором будет отрисовываться круг */
     private val rectF = RectF()
 
@@ -173,6 +156,7 @@ class CircleChartView : View {
         else Paint.Style.FILL
         //заливка или линии
         useCenter = arcPieMode == ARC_MODE_FILL
+        //вычисляем радиус круга
         radius = width / 2 - arcPieElevationF
     }
 
@@ -256,8 +240,10 @@ class CircleChartView : View {
 
     companion object {
 
+        /** Константа обозначающая линии */
         private const val ARC_MODE_STROKE = 0
 
+        /** Константа обозначающая заливку */
         private const val ARC_MODE_FILL = 1
     }
 }
