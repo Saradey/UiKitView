@@ -2,7 +2,10 @@
 <resources>
 
     <declare-styleable name="HorizontalSlider">
-
+        <attr name="hs_maxValue" format="integer" />
+        <attr name="hs_progressValue" format="integer" />
+        <attr name="hs_iconHead" format="reference" />
+        <attr name="hs_cornerRadius" format="dimension" />
     </declare-styleable>
 
 </resources>
