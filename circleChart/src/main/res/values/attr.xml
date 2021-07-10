@@ -2,13 +2,12 @@
 <resources>
 
     <declare-styleable name="CircleChartView">
-        <attr name="arc_pie_space" format="dimension" />
-        <attr name="arc_pie_stroke_size" format="dimension" />
-        <attr name="arc_pie_mode" format="enum">
+        <attr name="arc_pieSpace" format="dimension" />
+        <attr name="arc_pieStrokeSize" format="dimension" />
+        <attr name="arc_pieMode" format="enum">
             <enum name="stroke" value="0" />
             <enum name="fill" value="1" />
         </attr>
-        <attr name="arc_pie_elevation" format="boolean" />
+        <attr name="arc_pieElevation" format="boolean" />
     </declare-styleable>
-
 </resources>

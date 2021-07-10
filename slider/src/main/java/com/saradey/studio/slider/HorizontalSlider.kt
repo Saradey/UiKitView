@@ -34,6 +34,10 @@ class HorizontalSlider : View {
 
     }
 
+    override fun onDraw(canvas: Canvas?) {
+
+    }
+
     private var max = 10
     private var progress = 3
     var listener: HorizontalSliderProgressListener? = null
