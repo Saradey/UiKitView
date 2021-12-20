@@ -9,4 +9,3 @@ dependencyResolutionManagement {
 rootProject.name = "UiKitView"
 include ':app'
 include ':circleChart'
-include ':slider'
